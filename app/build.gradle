@@ -22,7 +22,7 @@ android {
     namespace "com.aatorque.stats"
     compileSdk 35
     defaultConfig {
-        applicationId "com.aatorque.stats.internal_test"
+        applicationId "com.aatorque.stats.altrix"
         minSdkVersion 28
         targetSdkVersion 35
         versionCode versionMajor * 1000 + versionMinor * 100 + versionPatch * 10
@@ -65,12 +65,12 @@ android {
         compose true
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_19
-        targetCompatibility JavaVersion.VERSION_19
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 
     kotlinOptions {
-        jvmTarget = "19"
+        jvmTarget = "17"
     }
 
     composeOptions {
@@ -91,7 +91,7 @@ configurations {
 dependencies {
     // Replaced with updated SDK from "https://github.com/cupral/aauto-sdk.git" (as git-submodule)
     //implementation 'com.github.martoreto:aauto-sdk:v4.7'
-    implementation project(path: ':speedviewlib', configuration: 'default')
+    implementation project(':speedviewlib')
     implementation files('../lib/aauto.aar')
 
     implementation 'com.jjoe64:graphview:4.2.2'
@@ -112,7 +112,6 @@ dependencies {
     implementation "androidx.datastore:datastore-preferences:1.1.1"
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.8.7'
     implementation 'androidx.navigation:navigation-ui-ktx:2.8.5'
-    implementation project(':speedviewlib')
 
     testImplementation 'junit:junit:4.13.2'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
