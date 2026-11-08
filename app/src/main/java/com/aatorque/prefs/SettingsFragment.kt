@@ -34,6 +34,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
     lateinit var opacityPref: SeekBarPreference
     lateinit var darkenArtPref: SeekBarPreference
     lateinit var blurArtPref: SeekBarPreference
+    lateinit var showTireHudPref: CheckBoxPreference
 
     // Tire pressure PID selectors
     lateinit var tirePressureFrontLeftPref: ListPreference
@@ -67,6 +68,13 @@ class SettingsFragment : PreferenceFragmentCompat() {
         opacityPref = findPreference("gaugeOpacity")!!
         blurArtPref = findPreference("blurArtwork")!!
         darkenArtPref = findPreference("darkenArtwork")!!
+        showTireHudPref = findPreference("showTireHud")!!
+        showTireHudPref.setOnPreferenceChangeListener { _, newValue ->
+            updateDatastorePref {
+                it.setHideTireHud(!(newValue as Boolean))
+            }
+            return@setOnPreferenceChangeListener true
+        }
 
         // Initialize tire pressure PID selectors
         tirePressureFrontLeftPref = findPreference("tirePressureFrontLeft")!!
@@ -271,6 +279,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
                 opacityPref.value = if (it.opacity == 0) 100 else it.opacity
                 blurArtPref.value = it.blurArt
                 darkenArtPref.value = it.darkenArt
+                showTireHudPref.isChecked = !it.hideTireHud
 
                 // Sync tire preferences from DataStore to UI
                 tirePressureFrontLeftPref.value = it.tirePressureFrontLeft

@@ -226,4 +226,6 @@
     <string name="torque_pro_not_installed">Torque Pro is not installed</string>
     <string name="torque_pro_launch_failed">Failed to launch Torque Pro</string>
     <string name="torque_not_running_warning">Torque Pro is not running. Settings and PID configuration require Torque to be active.</string>
+    <string name="show_tire_hud">Show tire widget</string>
+    <string name="show_tire_hud_summary">Show tire pressure and temperature overview in the top-left corner</string>
 </resources>

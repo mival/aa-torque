@@ -127,6 +127,7 @@ open class DashboardFragment : AlbumArt() {
             settingsViewModel.chartVisible.value = it.showChart
                 settingsViewModel.minMaxBelow.value = it.minMaxBelow
                 shouldDisplayArtwork = it.albumArt
+                binding.tireHudFragment.visibility = if (it.hideTireHud) View.GONE else View.VISIBLE
 
                 albumArtReady.countDown()
 

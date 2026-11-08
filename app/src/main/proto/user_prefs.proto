@@ -81,4 +81,5 @@ message UserPreference {
   double tirePressureFrontHighBar = 37;
   double tirePressureRearLowBar = 38;
   double tirePressureRearHighBar = 39;
+  bool hideTireHud = 40;
 }
