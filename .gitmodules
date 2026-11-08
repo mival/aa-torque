@@ -1,3 +1,0 @@
-[submodule "lib/speedviewlib"]
-	path = lib/speedviewlib
-	url = git@github.com:agronick/SpeedView.git
