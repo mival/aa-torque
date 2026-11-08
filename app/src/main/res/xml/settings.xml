@@ -111,6 +111,13 @@
         android:title="@string/tire_pressure_settings"
         android:singleLineTitle="false">
 
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="showTireHud"
+            android:persistent="false"
+            android:summary="@string/show_tire_hud_summary"
+            android:title="@string/show_tire_hud" />
+
         <com.aatorque.prefs.TirePIDPreference
             android:key="tirePressureFrontLeft"
             android:title="@string/tire_pressure_front_left"

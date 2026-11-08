@@ -46,4 +46,6 @@
     <string name="pref_ticks_on">Zobrazí hodnoty v budících</string>
     <string name="pref_background">Pozadí</string>
     <string name="item_details_go_back">Zpět</string>
+    <string name="show_tire_hud">Zobrazit widget pneumatik</string>
+    <string name="show_tire_hud_summary">Zobrazit přehled tlaku a teploty pneumatik v levém horním rohu</string>
 </resources>
