@@ -15,6 +15,15 @@ def versionMajor = props.getProperty("majorVersion") as Integer
 def versionMinor = props.getProperty("minorVersion") as Integer
 def versionPatch = props.getProperty("patchVersion") as Integer
 def acraVersion = '5.11.3'
+
+// Release signing for Google Play. Set the release.* keys in local.properties.
+// If release.storeFile is not set, the release build uses the debug key.
+Properties localProps = new Properties()
+def localPropsFile = rootProject.file('local.properties')
+if (localPropsFile.exists()) {
+    localPropsFile.withInputStream { localProps.load(it) }
+}
+def releaseStoreFile = localProps.getProperty('release.storeFile')
 def ghOwner = "Marc-Oros"
 def ghPackage = "aa-torque"
 
@@ -35,6 +44,16 @@ android {
         buildConfigField "String", "RELEASE_URL", "\"https://api.github.com/repos/${ghOwner}/${ghPackage}/releases/latest\""
         resourceConfigurations += ['en', 'cs', 'de', 'el', 'es', 'fr', 'fr-rCA', 'it', 'nl', 'pl', 'pt', 'pt-rBR', 'ru', 'sl', 'uk', 'zh-rHK']
     }
+    signingConfigs {
+        if (releaseStoreFile) {
+            release {
+                storeFile = rootProject.file(releaseStoreFile)
+                storePassword = localProps.getProperty('release.storePassword')
+                keyAlias = localProps.getProperty('release.keyAlias')
+                keyPassword = localProps.getProperty('release.keyPassword')
+            }
+        }
+    }
     buildTypes {
         debug {
             versionNameSuffix ".debug"
@@ -54,7 +73,7 @@ android {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             resValue "string", "app_version", "${defaultConfig.versionName}"
-            signingConfig signingConfigs.debug
+            signingConfig = releaseStoreFile ? signingConfigs.release : signingConfigs.debug
         }
     }
     buildFeatures {
